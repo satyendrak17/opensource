@@ -17,4 +17,7 @@ public interface WarehouseDaoService {
 	ProductReceiptEntity getProductBySlotNumber(WarehouseEntity warehouse);
 	boolean updateSlotAvailability(WarehouseEntity warehouse);
 	boolean updateProductAvailability(ProductReceiptEntity product);
+	List<ProductReceiptEntity> getProdCodesByColor(String prdColor);
+	List<ProductReceiptEntity> getProdByProdCode(long prodCode);
+	List<ProductReceiptEntity> getAllProducts();
 }

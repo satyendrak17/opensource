@@ -23,9 +23,6 @@ public class ProductReceiptEntity {
 	@Column(name = "product_color")
 	private String color;
 	
-	// @Column(name = "slot_number")
-	// private int slotNumber;	
-	
 	@Column(name = "is_sold")
 	private boolean isSold;
 	

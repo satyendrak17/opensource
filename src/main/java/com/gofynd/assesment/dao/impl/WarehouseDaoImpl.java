@@ -57,4 +57,19 @@ public class WarehouseDaoImpl implements WarehouseDaoService {
 		return receiptRepository.findByWarehouse(warehouse);
 	}
 
+	@Override
+	public List<ProductReceiptEntity> getProdCodesByColor(String prdColor) {
+		return receiptRepository.findByColorAndIsSold(prdColor, false);
+	}
+
+	@Override
+	public List<ProductReceiptEntity> getProdByProdCode(long prodCode) {
+		return receiptRepository.findByProductIdAndIsSold(prodCode, false);
+	}
+
+	@Override
+	public List<ProductReceiptEntity> getAllProducts() {
+		return receiptRepository.findByIsSold(false);
+	}
+
 }

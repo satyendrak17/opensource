@@ -97,4 +97,22 @@ public class WarehouseImpl implements WarehouseService {
 		return false;
 	}
 
+	@Override
+	public List<ProductReceiptEntity> getProdCodesByColor(String prdColor) {
+		List<ProductReceiptEntity> productList= warehouseDao.getProdCodesByColor(prdColor);
+		return productList;
+	}
+
+	@Override
+	public List<ProductReceiptEntity> getProdByProdCode(long prodCode) {
+		List<ProductReceiptEntity> productList= warehouseDao.getProdByProdCode(prodCode);
+		return productList;
+	}
+
+	@Override
+	public List<ProductReceiptEntity> getAllProducts() {
+		List<ProductReceiptEntity> productList= warehouseDao.getAllProducts();
+		return productList;
+	}
+
 }

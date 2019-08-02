@@ -1,5 +1,6 @@
 package com.gofynd.assesment;
 
+import java.util.List;
 import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.gofynd.assesment.entity.ProductReceiptEntity;
 import com.gofynd.assesment.impl.WarehouseImpl;
 
 @SpringBootApplication
@@ -20,6 +22,7 @@ public class AssesmentApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AssesmentApplication.class, args);
+		
 		// WarehouseImpl warehouseImpl = new WarehouseImpl();
 		// Take user input for warehouse
 		// store warehouse information in database
@@ -85,9 +88,10 @@ public class AssesmentApplication {
 	@PostConstruct
 	public void init() {
 		String userInput = "";
-		try (Scanner scanner = new Scanner(System.in)) {
-			
+		String format = "%1$-10s %2$-20s %3$-20s \n";
+		try (Scanner scanner = new Scanner(System.in)) {			
 			while (!userInput.equals("done")) {
+				try {
 				System.out.println("Input:");
 				String input = scanner.nextLine().trim();
 				String firstWord = "";
@@ -129,11 +133,67 @@ public class AssesmentApplication {
 							System.out.println("Something went wrong!!");
 						}
 						break;
-
+					case "product_codes_for_products_with_colour":
+					case "slot_numbers_for_products_with_colour":
+						String prdColor = userInput.split(" ")[1];
+						List<ProductReceiptEntity> prodReceipts = warehouseImpl.getProdCodesByColor(prdColor);
+						System.out.println("Output:");
+						if (prodReceipts != null && prodReceipts.size() > 0) {
+							for (ProductReceiptEntity prod: prodReceipts) {
+								if (firstWord.equalsIgnoreCase("slot_numbers_for_products_with_colour")) {
+									System.out.print(prod.getWarehouse().getSlotNumber());
+								} else {
+									System.out.print(prod.getProductId());
+								}
+								
+								System.out.print("  ");
+								System.out.println("\n");
+							}
+						} else {
+							System.out.println("No products found!");
+						}
+						break;
+						
+					case "slot_number_for_product_code":
+						long prdCode = Long.parseLong(userInput.split(" ")[1]);
+						List<ProductReceiptEntity> prodByProdCode = warehouseImpl.getProdByProdCode(prdCode);
+						System.out.println("Output:");
+						if (prodByProdCode != null && prodByProdCode.size() > 0) {
+							for (ProductReceiptEntity prod: prodByProdCode) {
+								System.out.print(prod.getWarehouse().getSlotNumber());
+								System.out.print("  ");
+							}
+						} else {
+							System.out.println("No products found!");
+						}
+						System.out.println("\n");
+						break;
+					case "status":
+						List<ProductReceiptEntity> allProducts = warehouseImpl.getAllProducts();
+						System.out.println("Output:");
+						System.out.format(format, "Slot No.", "Product Code", "Colour");
+						if (allProducts != null && allProducts.size() > 0) {
+							for (ProductReceiptEntity prod: allProducts) {
+								System.out.format(format, prod.getWarehouse().getSlotNumber(),
+										prod.getProductId(), prod.getColor());
+							}
+						} else {
+							System.out.println("No products found!");
+						}
+						System.out.println("\n");
+						break;
+						
+					case "done":
+						System.out.println("Exiting !!");
+						System.exit(-1);
 					default:
-						System.out.println("Invalid Input!!, please refer the instructions above");
+						System.out.println("Invalid Input!!, please refer the instructions above and try again");
 						break;
 					}
+				}
+				} catch (Exception e) {
+					System.out.println("e " + e.getMessage());
+					System.out.println("Something unexpected happened, please eneter a valid input.");
 				}
 			}		
 			System.out.println("Finished the task!!");
