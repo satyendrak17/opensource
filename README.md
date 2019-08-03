@@ -1,5 +1,18 @@
 # Assessment project for fynd.com
 
+# NOTE:-
+
+	1. Use linux\ubuntu to run the shell script.
+
+	2. To run on windows - 
+
+		- install maven
+
+		- run command - mvn clean install
+
+		- Run - java -jar target/assesment-0.0.1-SNAPSHOT.jar (same root project directory)
+
+
 #Execution Steps
 
 Step 1: To run the code unzip/extract the zip folder (gofynd.zip)
