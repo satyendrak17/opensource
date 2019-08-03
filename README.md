@@ -3,8 +3,11 @@
 #Execution Steps
 
 Step 1: To run the code unzip/extract the zip folder (gofynd.zip)
+
 Step 2: To give needed permissions run the command- sudo chmod 777 -R . (in the root directory)
+
 Step 3: Run -  ./warehouse.sh
+
 
 	This will install maven
 	Create the jar file and will run the unit test cases.
