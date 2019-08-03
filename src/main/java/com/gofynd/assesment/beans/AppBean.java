@@ -3,6 +3,8 @@ package com.gofynd.assesment.beans;
 import java.util.List;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +13,23 @@ import com.gofynd.assesment.impl.WarehouseImpl;
 
 @Component
 public class AppBean {
+	Logger logger = LoggerFactory.getLogger(AppBean.class);
 	@Autowired
 	private WarehouseImpl warehouseImpl;
 	public void run(String... args) throws Exception {
 		
+		System.out.println("==================== User Manual =============================");
+		System.out.println("Input Instructions, program will take the input in below format only");
+		System.out.println("==============");
+		System.out.println("Step 1: To create warehouse - warehouse 2(can be any number)");
+		System.out.println("Step 2: To store any product - store 12333 color");
+		System.out.println("Step 3: To Sell - Sell 2 (2 is Slot allocated Number)");
+		System.out.println("Step 4: To view the status - status");
+		System.out.println("Step 5: To fetch product code by colour - product_codes_for_products_with_colour colourname" );
+		System.out.println("Step 6: To fetch product slots by colour - slot_numbers_for_products_with_colour colourname");
+		System.out.println("Step 7: To fetch slots by product code - slot_number_for_product_code productcode");
+		System.out.println("Enter 'done' to exit anytime from program");
+		System.out.println("===================================================================");
 		String userInput = "";
 		String format = "%1$-10s %2$-20s %3$-20s \n";
 		try (Scanner scanner = new Scanner(System.in)) {			
@@ -47,7 +62,7 @@ public class AppBean {
 						if (slotGiven > 0) {
 							System.out.println("Allocated slot number "+slotGiven);
 						} else {
-							System.out.println("Product receipt could not be created, try again !!");
+							System.out.println("Warehouse is full");
 						}
 						break;
 						
@@ -58,7 +73,7 @@ public class AppBean {
 						if (isSold) {
 							System.out.println("Slot number "+slotNumberSold+" is free");
 						} else {
-							System.out.println("Something went wrong!!");
+							System.out.println("Something went wrong, or nothing stored to be sold.");
 						}
 						break;
 					case "product_codes_for_products_with_colour":

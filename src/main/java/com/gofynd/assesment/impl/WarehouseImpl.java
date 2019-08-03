@@ -46,6 +46,9 @@ public class WarehouseImpl implements WarehouseService {
 	@Override
 	public int storeProduct(long productId, String color) {
 		int avlSlot = getNearestAvlSlot();
+		if (avlSlot <= 0) {
+			return 0;
+		}
 		ProductReceiptEntity prodEntity = new ProductReceiptEntity();
 		prodEntity.setSold(false);
 		prodEntity.setColor(color);
@@ -68,15 +71,12 @@ public class WarehouseImpl implements WarehouseService {
 		List<Integer> slots = new ArrayList<>();
 		List<WarehouseEntity> allItems = warehouseDao.getAllAvlSlots(true);
 		if (allItems.size() == 0) {
-			System.out.println("No warehouse found");
-			System.out.println("Please create a warehouse!");
 			return 0;
 		}
 		for (WarehouseEntity warehouseSlot: allItems) {
 			slots.add(warehouseSlot.getSlotNumber());
 		}
 		Collections.sort(slots);
-		System.out.println("Available slots " + slots);
 		return slots.get(0);
 	}
 

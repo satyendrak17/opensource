@@ -10,16 +10,12 @@ import com.gofynd.assesment.beans.AppBean;
 @SpringBootApplication
 @ComponentScan("com.gofynd")
 public class AssesmentApplication {
-	
-	
-	
 	public static void main(String[] args) {
 		final ConfigurableApplicationContext context = SpringApplication.run(AssesmentApplication.class, args);
 		final AppBean app = context.getBean(AppBean.class);
         try {
 			app.run(args);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// WarehouseImpl warehouseImpl = new WarehouseImpl();
@@ -48,6 +44,4 @@ public class AssesmentApplication {
 		// if only product code is entered show the slots allocated
 		
 	}
-	
-	// @PostConstruct
 }
