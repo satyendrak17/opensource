@@ -13,8 +13,10 @@ Step 3: Run -  ./warehouse.sh
 	start the program.
 	
 # Limitations
-1. Program has not considered negative scenarios hance please enter the input in below format only
-2. Unit test is not written for every method due to time constarints, for sample I have written one unit test case.
+1. Program has not considered negative scenarios hance please,
+	enter the input in below format only
+2. Unit test is not written for every method due to time constarints, for sample 
+	I have written one unit test case.
 
 # To exit from the program enter "done" - This will terminate the program.
 
