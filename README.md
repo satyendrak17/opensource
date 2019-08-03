@@ -7,8 +7,11 @@
 	This will install maven
 	Create the jar file and will run the unit test cases.
 	start the program.
-
+	
+## Limitations
 # Program has not considered negative scenarios hance please enter the input in below format only
+# Unit test is not written for every method due to time constarints, for sample I have written one unit test case.
+
 ## To exit from the program enter "done" - This will terminate the program.
 ==================== User Manual =============================
 Input Instructions, program will take the input in below format only
