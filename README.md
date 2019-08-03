@@ -1,6 +1,6 @@
 # Assessment project for fynd.com
 
-# Execution Steps
+#Execution Steps
 
 Step 1: To run the code unzip/extract the zip folder (gofynd.zip)
 
@@ -8,21 +8,24 @@ Step 2: To give needed permissions run the command- sudo chmod 777 -R . (in the 
 
 Step 3: Run -  ./warehouse.sh
 
+
 	This will install maven
 	Create the jar file and will run the unit test cases.
 	start the program.
+
+#Limitations
+
+	1. Program has not considered negative scenarios hance please enter the input in below format only
 	
-# Limitations
-1. Program has not considered negative scenarios hance please,
-	enter the input in below format only
-2. Unit test is not written for every method due to time constarints, for sample 
-	I have written one unit test case.
+	2. Unit test is not written for every method due to time constarints, for sample I have written one unit test case.
 
 # To exit from the program enter "done" - This will terminate the program.
 
 ==================== User Manual =============================
 
 Input Instructions, program will take the input in below format only
+
+==============
 
 Step 1: To create warehouse - warehouse 2(can be any number)
 
